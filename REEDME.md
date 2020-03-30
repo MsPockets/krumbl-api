@@ -15,5 +15,4 @@ ERD
 User -|---< Recipes -|---< Likes
                     \|---< Comments
 
-
-imrc  
+  
