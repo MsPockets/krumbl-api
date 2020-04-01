@@ -1,5 +1,6 @@
 class RecipesController < OpenReadController
   before_action :set_recipe, only: [:show, :update, :destroy]
+  attr_accessor :title, :ingredients, :description
 
   # GET /recipes
   def index
@@ -16,6 +17,7 @@ class RecipesController < OpenReadController
   # POST /recipes
   def create
     @recipe = current_user.recipes.build(recipe_params)
+    @recipe.user_id = current_user.id
 
     if @recipe.save
       render json: @recipe, status: :created, location: @recipe
