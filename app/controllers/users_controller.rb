@@ -1,10 +1,8 @@
-require pry
 class UsersController < ProtectedController
   skip_before_action :authenticate, only: %i[signup signin]
 
   # POST '/sign-up'
   def signup
-    puts user_creds
     user = User.create(user_creds)
     if user.valid?
       render json: user, status: :created
