@@ -1,5 +1,5 @@
 class RecipesController < ProtectedController
-  before_action :set_recipe, only: [:show, :update, :destroy]
+  before_action :set_recipe, only: [:update, :destroy]
 
   # GET /posts
   def index
@@ -9,6 +9,7 @@ class RecipesController < ProtectedController
   end
   # GET /recipes/1
   def show
+    @recipe = Recipe.find(params[:id])
     render json: @recipe
   end
 
