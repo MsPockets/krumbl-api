@@ -1,14 +1,17 @@
-class RecipesController < OpenReadController
+class RecipesController < ProtectedController
   before_action :set_recipe, only: [:show, :update, :destroy]
   attr_accessor :title, :ingredients, :description
 
-  # GET /recipes
+  # GET /posts
   def index
-    @recipes = Recipe.all
-
+    @recipes = if params[:user_recipes]
+               current_user.recipes
+             else
+               Recipe.all
+             end
+    p @recipes
     render json: @recipes
   end
-
   # GET /recipes/1
   def show
     render json: @recipe
